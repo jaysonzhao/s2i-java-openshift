@@ -1,0 +1,91 @@
+{
+   "kind": "List",
+   "apiVersion": "v1",
+   "metadata": {
+      "name": "b-s2i-openjdk18-openshift"
+   },
+   "items": [
+      {
+         "kind": "ImageStream",
+         "apiVersion": "v1",
+         "metadata": {
+            "name": "redhat-openjdk18-openshift"
+         },
+         "spec": {
+            "dockerImageRepository": "registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift",
+            "tags": [
+               {
+                  "name": "1.0",
+                  "annotations": {
+                     "description": "OpenJDK S2I images.",
+                     "iconClass": "icon-jboss",
+                     "tags": "builder,java,xpaas",
+                     "supports":"java:8,xpaas:1.0",
+                     "sampleRepo": "https://github.com/jboss-openshift/openshift-quickstarts",
+                     "sampleContextDir": "undertow-servlet",
+                     "version": "1.0"
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "kind": "ImageStream",
+         "apiVersion": "v1",
+         "metadata": {
+            "name": "b-s2i-openjdk18-openshift"
+         },
+         "spec": {
+            "dockerImageRepository": "testrh1/b-s2i-openshift-openjdk:latest",
+            "tags": [
+               {
+                  "name": "latest",
+                  "annotations": {
+                     "description": "B - OpenJDK S2I images.",
+                     "iconClass": "icon-jboss",
+                     "tags": "builder,java,xpaas",
+                     "supports":"java:8,xpaas:1.0",
+                     "sampleRepo": "https://github.com/jboss-openshift/openshift-quickstarts",
+                     "sampleContextDir": "undertow-servlet",
+                     "version": "1.0"
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "kind": "BuildConfig",
+         "apiVersion": "v1",
+         "metadata": {
+            "name": "b-s2i-openjdk18-openshift"
+         },
+         "spec": {
+            "triggers": [
+            ],
+            "source": {
+               "type": "Git",
+               "git": {
+                  "uri": "https://github.com/soukron/b-s2i-openjdk18-openshift.git",
+                  "ref": "master"
+               }
+            },
+            "strategy": {
+               "type": "Docker",
+               "dockerStrategy": {
+                  "from": {
+                     "kind": "ImageStreamTag",
+                     "name": "redhat-openjdk18-openshift:latest"
+                  }
+               }
+            },
+            "output": {
+               "to": {
+                  "kind": "ImageStreamTag",
+                  "name": "b-s2i-openjdk18-openshift:latest"
+               }
+            },
+            "resources": {}
+         }
+      }
+   ]
+}
