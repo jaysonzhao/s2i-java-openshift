@@ -15,8 +15,8 @@ RUN INSTALL_PKGS="java-1.8.0-oracle java-1.8.0-oracle-devel" && \
     alternatives --install /usr/bin/java java /usr/lib/jvm/java-1.8.0-oracle/bin/java 3 && \
     alternatives --set java /usr/lib/jvm/java-1.8.0-oracle/bin/java && \
     alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-1.8.0-oracle/bin/javac 3 && \
-    alternatives --set javac /usr/lib/jvm/java-1.8.0-oracle/bin/javac && \
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-oracle
+    alternatives --set javac /usr/lib/jvm/java-1.8.0-oracle/bin/javac
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-oracle
 
 # Use jboss user as default (in numeric as s2i requires it)
 USER 185
