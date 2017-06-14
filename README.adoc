@@ -10,7 +10,7 @@ It's just a baseline for those of you which need (for some reason) to create you
 * First load all the needed resources in a project.
 
 ----
-oc apply -f https://raw.githubusercontent.com/soukron/s2i-java-openshift/openshift/resources/s2i-java-openshift.json
+oc apply -f https://raw.githubusercontent.com/soukron/s2i-java-openshift/master/openshift/resources/s2i-java-openshift.json
 ----
 
 * Once the builder **s2i-openjdk18-openshift** and/or **s2i-oraclejdk8-openshift** have been registered, you can create an app by using the builder images using a regular Git repository.
