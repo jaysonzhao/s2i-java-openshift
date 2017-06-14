@@ -14,5 +14,18 @@ oc apply -f https://raw.githubusercontent.com/soukron/s2i-java-openshift/openshi
 * Once the builder **s2i-openjdk18-openshift** and/or **s2i-oraclejdk8-openshift** have been registered, you can create an app by using the builder images using a regular Git repository.
 
 == Samples
-There is a lot of example SpringBoot applications https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples[here]
+Run __undertow__ sample application using new custom OpenJDK S2I image:
+----
+oc new-app --name undertow \
+           --context-dir undertow-servlet \
+           --image-stream=s2i-openjdk18-openshift \
+           https://github.com/jboss-openshift/openshift-quickstarts 
+----
 
+Run __undertow__ sample application using new custom OracleJDK S2I image:
+----
+oc new-app --name undertow \
+           --context-dir undertow-servlet \
+           --image-stream=s2i-oraclejdk8-openshift \
+           https://github.com/jboss-openshift/openshift-quickstarts 
+----
