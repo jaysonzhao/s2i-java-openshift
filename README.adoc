@@ -7,13 +7,20 @@ It's just a baseline for those of you which need (for some reason) to create you
 **Note for purists:** I know that Oracle image has a bigger size and it's a waste of disk to install OracleJDK on top of openjdk18-openshift image, BUT what I try here is to keep the image as much supported as I can so quality, troubleshooting and supportability in the future aren't difficult. For other good S2I image you can use https://github.com/jorgemoralespou/s2i-java[Jorge Morales' image].
 
 == Build in OpenShift
-* First load all the needed resources in a project.
+* First load all the needed resources in a project:
 
 ----
 oc apply -f https://raw.githubusercontent.com/soukron/s2i-java-openshift/master/openshift/resources/s2i-java-openshift.json
 ----
 
-* Once the builder **s2i-openjdk18-openshift** and/or **s2i-oraclejdk8-openshift** have been registered, you can create an app by using the builder images using a regular Git repository.
+* Then build the images for the first time:
+
+----
+oc start-build s2i-openjdk18-openshift
+oc start-build s2i-oraclejdk8-openshift
+----
+
+* Once the builder **s2i-openjdk18-openshift** and/or **s2i-oraclejdk8-openshift** have been registered and built, you can create an app by using the builder images using a regular Git repository.
 
 == Samples
 Run __undertow__ sample application using new custom OpenJDK S2I image:
