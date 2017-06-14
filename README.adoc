@@ -2,7 +2,9 @@
 This Source-to-Image Builder let's you create projects targetting Java OpenJDK 8 and/or OracleJDK 8, based on
 https://access.redhat.com/containers/#/registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift[Red Hat's OpenJDK Image for Java Applications]
 
-It's just a baseline for those of you which need to create your own Java S2I image and want to begin from Red Hat's supported images.
+It's just a baseline for those of you which need (for some reason) to create your own Java S2I image and want to begin from Red Hat's supported images.
+
+**Note for purists:** I know that Oracle image has a bigger size and it's a waste of disk to install OracleJDK on top of openjdk18-openshift image, BUT what I try here is to keep the image as much supported as I can so quality, troubleshooting and supportability in the future aren't difficult. For other good S2I image you can use https://github.com/jorgemoralespou/s2i-java[Jorge Morales' image].
 
 == Build in OpenShift
 * First load all the needed resources in a project.
