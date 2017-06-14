@@ -1,0 +1,17 @@
+== OpenShift S2I Builder for Java (OpenJDK/OracleJDK)
+This Source-to-Image Builder let's you create projects targetting Java OpenJDK 8 and/or OracleJDK 8, based on
+https://access.redhat.com/containers/#/registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift[Red Hat's OpenJDK Image for Java Applications]
+
+== Build in OpenShift
+
+* First load all the needed resources in a project.
+
+----
+oc apply -f https://raw.githubusercontent.com/soukron/s2i-java-openshift/openshift/resources/s2i-java-openshift.json
+----
+
+* Once the builder s2i-openjdk18-openshift and/or s2i-oraclejdk8-openshift have been registered, you can create an app by using the s2i-java builder image using a regular Git repository.
+
+== Samples
+There is a lot of example SpringBoot applications https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples[here]
+

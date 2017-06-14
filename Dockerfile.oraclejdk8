@@ -1,0 +1,22 @@
+FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.0-4
+# HOME in base image is /home/jboss
+
+# COPY a different setting.xml
+COPY ./files/settings.xml $HOME/.m2/
+
+# We need root to install packages
+USER root
+
+# Install Oracle JDK
+RUN INSTALL_PKGS="java-1.8.0-oracle java-1.8.0-oracle-devel" && \
+    yum install -y --enablerepo rhel-7-server-thirdparty-oracle-java-rpms $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    yum clean all -y && \
+    alternatives --install /usr/bin/java java /usr/lib/jvm/java-1.8.0-oracle/bin/java 3 && \
+    alternatives --set java /usr/lib/jvm/java-1.8.0-oracle/bin/java && \
+    alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-1.8.0-oracle/bin/javac 3 && \
+    alternatives --set javac /usr/lib/jvm/java-1.8.0-oracle/bin/javac && \
+    export JAVA_HOME=/usr/lib/jvm/java-1.8.0-oracle
+
+# Use jboss user as default (in numeric as s2i requires it)
+USER 185
