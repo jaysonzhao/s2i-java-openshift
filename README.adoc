@@ -29,3 +29,7 @@ oc new-app --name undertow \
            --image-stream=s2i-oraclejdk8-openshift \
            https://github.com/jboss-openshift/openshift-quickstarts 
 ----
+
+== Disclaimers
+* In order to build this images you need a valid Red Hat subscription entitlement to access the repositories and install software.
+* Don't forget also https://www.redhat.com/en/about/eula/oracle-java-se[Oracle's license agreement] or devil will come to you.
